@@ -2,7 +2,10 @@
 
 Este ejemplo es de gh-pages
 
-* 1
-* 2
+* _Sitio Original_ -  https://fsitios.github.io/d3-demo/
+* _Demo Barraas_ -  https://fsitios.github.io/d3-demo/barras.html
 
-https://fsitios.github.io/d3-demo/
+
+
+
+
