@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>D3</title>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+</head>
+<body>
+
+  <script>
+        var datos = [
+          {"candidato":"trump","seguidores":14607000},
+          {"candidato":"clinton","seguidores":10946000},
+          {"candidato":"obama","seguidores":3365465}
+        ];
+
+        var ancho = d3.scaleLinear().domain([0,14607000]).range([0,200]);
+
+        var svg = d3.select("body").append("svg").attr("width",200).attr("height",600);
+
+    
+        var rect = svg.selectAll('rect').data(datos).enter().append('rect')
+          .attr("width",function(d,i){return ancho(d.seguidores);})
+          .attr("height",90)
+          .attr("y",function(d,i){return i*100;});
+    
+        var text = svg.selectAll("text")
+                        .data(datos)
+                        .enter()
+                        .append("text");
+    
+        text.attr("x",function(d,i){return 50;})
+          .attr("y", function(d,i){return i*100;})
+          .attr("dy", "2.5em")
+          .text(function(d,i) {return i + " " + d.candidato + "";})
+          .attr("font-family", "sans-serif")
+          .attr("font-size", "20px")
+          .attr("fill", "red");
+       
+
+
+        /*
+        d3.select("body").selectAll("p")
+          .data(datos)
+          .enter()
+          .append("p")
+          .append("b")
+          .html(function(d,i) {return i + " " + d.candidato + "";})
+        */
+
+  </script>
+  
+  
+  
+</body>
+</html>
