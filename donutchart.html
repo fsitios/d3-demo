@@ -18,19 +18,24 @@
 
     var data = datos;
 
-    var width = 600,
-        height = 250,
+    var width = 500,
+        height = 350,
         radius = Math.min(width, height) / 2;
 
+    var total = 0;
+    for (var i = 0, len = datos.length; i < len; i++) {
+      total = total + datos[i].seguidores;
+    }
 
+    
     var arc = d3.svg.arc()
-        .outerRadius(radius - 10)
-        .innerRadius(radius - 70);
+        .outerRadius(radius)
+        .innerRadius(radius - 75);
 
     var pie = d3.layout.pie()
         .sort(null)
         .value(function (d) {
-        return d.seguidores;
+          return ((d.seguidores/total)*100);
     });
 
     var svg = d3.select("body").append("svg")
@@ -56,8 +61,9 @@
             })
             .attr("dy", ".35em")
             .style("text-anchor", "middle")
-            .text(function (d) {
-            return d.data.candidato;
+            .attr("fill", "white")
+            .html(function (d) {
+            return d.data.candidato + " </br> " + Math.ceil((d.data.seguidores/total)*100) + "%";
         });
   
   </script>
